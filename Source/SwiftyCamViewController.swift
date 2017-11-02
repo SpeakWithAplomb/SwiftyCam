@@ -623,21 +623,18 @@ open class SwiftyCamViewController: UIViewController {
 		session.commitConfiguration()
 	}
 
-
-	// Front facing camera will always be set to VideoQuality.high
+	
 	// If set video quality is not supported, videoQuality variable will be set to VideoQuality.high
 	/// Configure image quality preset
 
 	fileprivate func configureVideoPreset() {
-		if currentCamera == .front {
-			session.sessionPreset = videoInputPresetFromVideoQuality(quality: .high)
-		} else {
-			if session.canSetSessionPreset(videoInputPresetFromVideoQuality(quality: videoQuality)) {
-				session.sessionPreset = videoInputPresetFromVideoQuality(quality: videoQuality)
-			} else {
-				session.sessionPreset = videoInputPresetFromVideoQuality(quality: .high)
-			}
-		}
+		
+        if session.canSetSessionPreset(videoInputPresetFromVideoQuality(quality: videoQuality)) {
+            session.sessionPreset = videoInputPresetFromVideoQuality(quality: videoQuality)
+        } else {
+            session.sessionPreset = videoInputPresetFromVideoQuality(quality: .high)
+        }
+    
 	}
 
 	/// Add Video Inputs
